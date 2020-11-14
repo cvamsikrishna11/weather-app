@@ -6,6 +6,7 @@ const forcast = require('./utils/forcast');
 
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 // Define paths for express config
 // Path to load the public folder a default path
@@ -66,14 +67,14 @@ app.get('/weather', (req, res) => {
                 return res.send({ 'error': err });
             }
             console.log('Place Response:', { place, latitude, longitude });
-            console.log('Forcast Response:', { "Curent weather": currentWeather, "Actual temperature": actualTemperature, "Feels like": feelsLike });            
+            console.log('Forcast Response:', { "Curent weather": currentWeather, "Actual temperature": actualTemperature, "Feels like": feelsLike });
             res.send({
                 'location': place,
                 'forcast': "Curent weather:" + currentWeather + " Actual temperature:" + actualTemperature + " Feels like:" + feelsLike
             })
-               
-         
-            });
+
+
+        });
 
     });
 
@@ -100,6 +101,6 @@ app.get('*', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log('Server is up on port 3000.')
 });
