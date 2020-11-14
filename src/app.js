@@ -62,15 +62,15 @@ app.get('/weather', (req, res) => {
         if (error) {
             return res.send({ 'error': error });
         }
-        forcast(latitude, longitude, (err, { currentWeather, actualTemperature, feelsLike } = {}) => {
+        forcast(latitude, longitude, (err, { currentWeather, actualTemperature, feelsLike, humidity } = {}) => {
             if (err) {
                 return res.send({ 'error': err });
             }
             console.log('Place Response:', { place, latitude, longitude });
-            console.log('Forcast Response:', { "Curent weather": currentWeather, "Actual temperature": actualTemperature, "Feels like": feelsLike });
+            console.log('Forcast Response:', { "Curent weather": currentWeather, "Actual temperature": actualTemperature, "Feels like": feelsLike, "Humidity": humidity });
             res.send({
                 'location': place,
-                'forcast': "Curent weather:" + currentWeather + " Actual temperature:" + actualTemperature + " Feels like:" + feelsLike
+                'forcast': "Curent weather:" + currentWeather + " Actual temperature:" + actualTemperature + " Feels like:" + feelsLike + " and Humidity: " + humidity
             })
 
 
